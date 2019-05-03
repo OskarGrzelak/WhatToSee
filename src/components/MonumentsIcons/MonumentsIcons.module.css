@@ -1,0 +1,9 @@
+.Icons {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+i {
+    color: #37AFFF;
+    font-size: 12rem;
+}
