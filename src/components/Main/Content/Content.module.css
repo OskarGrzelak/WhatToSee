@@ -1,0 +1,9 @@
+.Content {
+    grid-column: col-start 2 / main-end;
+    padding: 10rem 0;
+}
+
+.Content button {
+    padding: 2.5rem 4rem;
+    font-size: 4rem;
+}

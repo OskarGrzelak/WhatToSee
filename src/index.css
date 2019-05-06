@@ -16,3 +16,12 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+button {
+  display: block;
+  margin: 0 auto;
+  border: 2px solid #37AFFF;
+  background-color: #ffffff;
+  color: #37AFFF;
+  text-transform: uppercase;
+}
