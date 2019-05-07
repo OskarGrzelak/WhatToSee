@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './Header/Header';
 import Content from './Content/Content';
 import Place from './Place/Place';
+import Footer from '../Footer/Footer';
 import styles from './Main.module.css';
 
 const main = () => {
@@ -15,7 +16,7 @@ const main = () => {
                 <Place id="4" />
                 <button>See more places</button>
             </Content>
-            <div>footer</div>
+            <Footer />
         </div>
     )
 }

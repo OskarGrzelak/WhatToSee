@@ -5,7 +5,7 @@ import styles from './Header.module.css';
 const header = () => {
     return (
         <div className={styles.Header}>
-            <MonumentsIcons style={{transform: 'translateY(5px)'}} />
+            <MonumentsIcons style={{transform: 'translateY(5px)', color: '#37AFFF', fontSize: '12rem'}} />
             <h1>The best places</h1>
             <h2>to see in <input type="text" /></h2>
             <button>Check it!</button>

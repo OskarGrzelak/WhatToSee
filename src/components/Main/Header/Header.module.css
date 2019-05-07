@@ -6,7 +6,7 @@
     justify-content: center;
 }
 
-h1 {
+.Header h1 {
     color: white;
     font-size: 10rem;
     font-weight: 400;
@@ -14,7 +14,7 @@ h1 {
     background-color: #37AFFF;
 }
 
-h2 {
+.Header h2 {
     color: #313131;
     font-size: 7rem;
     font-weight: 400;
@@ -22,7 +22,7 @@ h2 {
     margin-bottom: 10rem;
 }
 
-input {
+.Header input {
     color: #313131;
     font-size: 7rem;
     background-color: transparent;

@@ -3,7 +3,6 @@
     justify-content: space-evenly;
 }
 
-i {
-    color: #37AFFF;
-    font-size: 12rem;
+.Icons i:not(:last-of-type) {
+    margin-right: 2rem;
 }
