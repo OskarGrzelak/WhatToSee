@@ -11,7 +11,7 @@ const place = (props) => {
             <div className={styles.DataContainer}>
                 <h3>Tyho Brahe Planetarium</h3>
                 <p>Transom skysail lugsail lee Blimey me walk the plank maroon Jack Ketch lass. Blimey hail-shot clipper cog booty belaying pin parley barque walk the plank sloop. Blow the man down sloop holystone Arr hearties bilged on her anchor gibbet long boat splice the main brace rigging.</p>
-                <button>Read More</button>
+                <button onClick={props.showDetails}>Read More</button>
             </div>
         </div>
     );
@@ -21,7 +21,7 @@ const place = (props) => {
                 <div className={styles.DataContainer}>
                     <h3>Tyho Brahe Planetarium</h3>
                     <p>Transom skysail lugsail lee Blimey me walk the plank maroon Jack Ketch lass. Blimey hail-shot clipper cog booty belaying pin parley barque walk the plank sloop. Blow the man down sloop holystone Arr hearties bilged on her anchor gibbet long boat splice the main brace rigging.</p>
-                    <button>Read More</button>
+                    <button onClick={props.showDetails}>Read More</button>
                 </div>
                 <div className={styles.ImageContainer}>
                     <img src={image} />

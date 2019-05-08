@@ -5,12 +5,12 @@ import Place from './Place/Place';
 import Footer from '../Footer/Footer';
 import styles from './Main.module.css';
 
-const main = () => {
+const main = (props) => {
     return (
         <div className={styles.Main}>
             <Header />
             <Content>
-                <Place id="1" />
+                <Place id="1" showDetails={props.showDetails} />
                 <Place id="2" />
                 <Place id="3" />
                 <Place id="4" />

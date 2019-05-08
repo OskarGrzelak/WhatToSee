@@ -24,6 +24,7 @@
 
 .Header input {
     color: #313131;
+    font-family: inherit;
     font-size: 7rem;
     background-color: transparent;
     border: none;
