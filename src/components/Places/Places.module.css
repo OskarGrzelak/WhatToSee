@@ -1,0 +1,66 @@
+.Places {
+    display: grid;
+    grid-template-columns: [full-start] minmax(6rem, 1fr) [main-start] repeat(3, [col-start] minmax(min-content, 40rem) [col-end]) [main-end] minmax(6rem, 1fr) [full-end];
+}
+
+.Grid {
+    grid-column: main-start / main-end;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    grid-gap: 5rem;
+    margin-bottom: 10rem;
+}
+
+.SearchBox {
+    grid-column: main-start / main-end;
+    position: relative;
+    width: 60rem;
+    margin: 0 auto 10rem;
+}
+
+.SearchBox input {
+    color: #313131;
+    font-family: inherit;
+    font-size: 4rem;
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid #313131;
+    outline: none;
+    width: 100%;
+    text-align: center;
+    margin: 0 auto;
+    display: block;
+}
+
+.SearchBox label {
+    position: absolute;
+    top: 6rem;
+    left: 50%;
+    transform: translate(-50%, 0);
+    font-size: 4rem;
+    transition: transform .3s;
+    width: 100%;
+    text-align: center;
+}
+
+.SearchBox input:placeholder-shown + label {
+    visibility: hidden;
+    transform: translate(-50%, -3rem);
+}
+
+.SearchBox button {
+    position: absolute;
+    top: 0;
+    right: -6rem;
+    height: 5rem;
+    width: 5rem;
+    border: none;
+    background-color: transparent;
+    font-size: 5rem;
+    transition: transform .3s;
+}
+
+.SearchBox input:placeholder-shown ~ button {
+    visibility: hidden;
+    transform: translateX(-3rem);
+}

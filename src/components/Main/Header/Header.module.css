@@ -1,9 +1,13 @@
 .Header {
     grid-column: full-start / full-end;
-    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    padding: 4rem 0;
+}
+
+.HeaderMain {
+    height: 100vh;
 }
 
 .Header h1 {

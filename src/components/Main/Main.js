@@ -8,13 +8,13 @@ import styles from './Main.module.css';
 const main = (props) => {
     return (
         <div className={styles.Main}>
-            <Header />
+            <Header type="main" changeCity={props.changeCity} city={props.city} />
             <Content>
                 <Place id="1" showDetails={props.showDetails} />
                 <Place id="2" />
                 <Place id="3" />
                 <Place id="4" />
-                <button>See more places</button>
+                <button onClick={props.showPlaces}>See more places</button>
             </Content>
             <Footer />
         </div>

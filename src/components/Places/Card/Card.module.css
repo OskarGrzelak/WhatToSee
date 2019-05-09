@@ -1,0 +1,49 @@
+.Card {
+    position: relative;
+}
+
+.Card figcaption {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(31, 31, 31, .6);
+    color: #ffffff;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.Card p {
+    width: 90%;
+    margin: 0 auto;
+    font-size: 2.8rem;
+    line-height: 1;
+    letter-spacing: .2rem;
+    text-transform: uppercase;
+    text-align: center;
+    position: relative;
+    transition: transform .3s;
+}
+
+.Card span {
+    display: block;
+    font-size: 1.4rem;
+    text-transform: none;
+    letter-spacing: 0;
+    line-height: 1.2;
+    position: absolute;
+    top: 120%;
+    opacity: 0;
+    transition: opacity .3s;
+}
+
+.Card figcaption:hover p {
+    transform: translateY(-100%);
+}
+
+.Card figcaption:hover span {
+    opacity: 1;
+}
