@@ -7,3 +7,25 @@
     padding: 2.5rem 4rem;
     font-size: 4rem;
 }
+
+@media only screen and (max-width: 1000px) {
+    .Content {
+        padding: 5rem 0;
+    }
+    
+    .Content button {
+        padding: 2rem 4rem;
+        font-size: 3rem;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .Content {
+        padding: 2rem 0;
+    }
+    
+    .Content button {
+        padding: 1.5rem 2rem;
+        font-size: 2rem;
+    }
+}

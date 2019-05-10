@@ -8,7 +8,7 @@ const footer = () => (
             <h1>The best places</h1>
             <div className={styles.Footer__sub}>
                 <h2>to see</h2>
-                <MonumentsIcons style={{color: '#FFFFFF', fontSize: '4rem'}} />
+                <MonumentsIcons type="footer" />
             </div>
         </div>
         <div className={styles.Footer__circle}>

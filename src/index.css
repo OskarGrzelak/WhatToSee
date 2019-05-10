@@ -25,3 +25,15 @@ button {
   color: #37AFFF;
   text-transform: uppercase;
 }
+
+@media only screen and (max-width: 1200px) {
+  html {
+    font-size: 56.25%;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  html {
+    font-size: 50%;
+  }
+}

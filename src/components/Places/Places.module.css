@@ -64,3 +64,77 @@
     visibility: hidden;
     transform: translateX(-3rem);
 }
+
+@media only screen and (max-width: 800px) {
+    .SearchBox {
+        width: 50rem;
+    }
+
+    .SearchBox input {
+        font-size: 3rem;
+    }
+    
+    .SearchBox label {
+        top: 5rem;
+        font-size: 3rem;
+    }
+
+    .SearchBox button {
+        height: 4rem;
+        width: 4rem;
+        font-size: 4rem;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .Grid {
+        grid-gap: 3rem;
+        margin-bottom: 5rem;
+    }
+
+    .SearchBox {
+        width: 40rem;
+    }
+
+    .SearchBox input {
+        font-size: 2.5rem;
+    }
+    
+    .SearchBox label {
+        top: 4rem;
+        font-size: 2.5rem;
+    }
+
+    .SearchBox button {
+        height: 3rem;
+        width: 3rem;
+        right: -4rem;
+        font-size: 3rem;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .Places {
+        grid-template-columns: [full-start] minmax(2rem, 1fr) [main-start] repeat(3, [col-start] minmax(min-content, 40rem) [col-end]) [main-end] minmax(2rem, 1fr) [full-end];
+    }
+
+    .SearchBox {
+        width: 30rem;
+    }
+
+    .SearchBox input {
+        font-size: 2rem;
+    }
+    
+    .SearchBox label {
+        top: 3rem;
+        font-size: 2rem;
+    }
+
+    .SearchBox button {
+        height: 2.5rem;
+        width: 2.5rem;
+        right: -3rem;
+        font-size: 2.5rem;
+    }
+}

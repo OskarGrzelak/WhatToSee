@@ -2,3 +2,9 @@
     display: grid;
     grid-template-columns: [full-start] minmax(6rem, 1fr) [main-start] repeat(8, [col-start] minmax(min-content, 14rem) [col-end]) [main-end] minmax(6rem, 1fr) [full-end];
 }
+
+@media only screen and (max-width: 500px) {
+    .Main {
+        grid-template-columns: [full-start] minmax(2rem, 1fr) [main-start] repeat(8, [col-start] minmax(min-content, 14rem) [col-end]) [main-end] minmax(2rem, 1fr) [full-end];
+    }
+}

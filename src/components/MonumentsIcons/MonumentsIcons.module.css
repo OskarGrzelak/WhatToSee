@@ -6,3 +6,52 @@
 .Icons i:not(:last-of-type) {
     margin-right: 2rem;
 }
+
+.IconsHeader {
+    transform: translateY(5px);
+    color: #37AFFF; 
+    font-size: 12rem;
+}
+
+.IconsFooter {
+    color: #FFFFFF;
+    font-size: 4rem;
+}
+
+@media only screen and (max-width: 800px) {
+    .IconsHeader {
+        font-size: 10rem;
+    }
+
+    .IconsFooter {
+        font-size: 3rem;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .IconsHeader {
+        font-size: 8rem;
+    }
+
+    .IconsFooter {
+        font-size: 2rem;
+    }
+
+    .Icons i:not(:last-of-type) {
+        margin-right: 1.5rem;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .IconsHeader {
+        font-size: 6rem;
+    }
+
+    .IconsFooter {
+        font-size: 1.5rem;
+    }
+
+    .Icons i:not(:last-of-type) {
+        margin-right: 1rem;
+    }
+}

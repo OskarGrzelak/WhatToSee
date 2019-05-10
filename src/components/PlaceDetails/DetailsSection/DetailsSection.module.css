@@ -36,3 +36,27 @@
 .Section p:not(:last-of-type) {
     margin-bottom: 2rem;
 }
+
+@media only screen and (max-width: 800px) {
+    .Section p {
+        width: 80%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .Section {
+        margin-bottom: 5rem;
+    }
+
+    .Section h2 {
+        font-size: 3rem;
+        margin-bottom: 3rem;
+        padding: 0 1rem;
+    }
+
+    .Section p {
+        width: 90%;
+        font-size: 1.6rem;
+        line-height: 1.4;
+    }
+}
