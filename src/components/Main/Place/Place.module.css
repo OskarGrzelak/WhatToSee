@@ -5,6 +5,7 @@
 
 .ImageContainer {
     width: 50%;
+    height: 30rem;
 }
 
 .DataContainer {
@@ -14,6 +15,8 @@
 
 img {
     width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .Place h3 {

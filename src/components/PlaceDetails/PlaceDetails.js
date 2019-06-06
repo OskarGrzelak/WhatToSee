@@ -12,7 +12,7 @@ const placeDetails = (props) => {
                 <i className="fas fa-times"></i>
             </div>
             <figure>
-                <img src={image} />
+                <img src={image} alt={image} />
                 <figcaption>
                     <h1>Grand Palais</h1>
                 </figcaption>
@@ -23,13 +23,13 @@ const placeDetails = (props) => {
             <DetailsSection />
             <div className={styles.Gallery}>
                 <figure>
-                    <img src={image} />
+                    <img src={image} alt={image} />
                 </figure>
                 <figure>
-                    <img src={image} />
+                    <img src={image} alt={image} />
                 </figure>
                 <figure>
-                    <img src={image} />
+                    <img src={image} alt={image} />
                 </figure>
             </div>
             <div className={styles.Navigation}>

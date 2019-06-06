@@ -4,7 +4,7 @@ import styles from './Card.module.css';
 
 const card = () => (
     <figure className={styles.Card}>
-        <img src={image} />
+        <img src={image} alt={image} />
         <figcaption>
             <p>
                 Tyho Brahe Planetarium
