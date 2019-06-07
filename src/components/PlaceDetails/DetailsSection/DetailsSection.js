@@ -4,8 +4,11 @@ import styles from './DetailsSection.module.css';
 const detailsSection = (props) => {
     let body = null;
     if (props.title !== "Contact") {
-        const data = props.data.split('\n\n');
-        body = data.map((paragraph, index) => <p key={index}>{paragraph}</p>);
+        let data = null;
+        if (props.data) {
+            data = props.data.split('\n\n');
+            body = data.map((paragraph, index) => <p key={index}>{paragraph}</p>);
+        }
     } else {
         body = <div>
             <p>Phone: {props.data.phone}</p>

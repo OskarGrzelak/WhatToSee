@@ -54,17 +54,6 @@
     text-transform: uppercase;
 }
 
-.Gallery {
-    height: 33vw;
-    display: flex;
-    margin-bottom: 10rem;
-}
-
-.Gallery figure {
-    width: 33vw;
-    height: 33vw;
-}
-
 .Navigation {
     display: flex;
     margin-bottom: 10rem;

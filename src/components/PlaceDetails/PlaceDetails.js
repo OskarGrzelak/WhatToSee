@@ -1,6 +1,7 @@
 import React from 'react';
 import image from '../../assets/images/TyhoBrahe.jpg';
 import DetailsSection from './DetailsSection/DetailsSection';
+import GallerySection from './GallerySection/GallerySection';
 import Footer from '../Footer/Footer';
 import styles from './PlaceDetails.module.css';
 
@@ -21,17 +22,7 @@ const placeDetails = (props) => {
             <DetailsSection title="Opening hours" data={props.data.opening_hours} />
             <DetailsSection title="Admission" data={props.data.admission}/>
             <DetailsSection title="Contact" data={props.data} />
-            <div className={styles.Gallery}>
-                <figure>
-                    <img src={props.data.main_media.media[0].url} alt={image} />
-                </figure>
-                <figure>
-                    <img src={props.data.main_media.media[0].url} alt={image} />
-                </figure>
-                <figure>
-                    <img src={props.data.main_media.media[0].url} alt={image} />
-                </figure>
-            </div>
+            <GallerySection photos={props.data.main_media.media} />
             <div className={styles.Navigation}>
                 <button>Previous</button>
                 <button>Next</button>
