@@ -1,12 +1,25 @@
 import React from 'react';
 import styles from './DetailsSection.module.css';
 
-const detailsSection = (props) => (
-    <div className={styles.Section}>
-        <h2>About</h2>
-        <p>Transom skysail lugsail lee Blimey me walk the plank maroon Jack Ketch lass. Blimey hail-shot clipper cog booty belaying pin parley barque walk the plank sloop. Blow the man down sloop holystone Arr hearties bilged on her anchor gibbet long boat splice the main brace rigging.</p>
-        <p>Transom skysail lugsail lee Blimey me walk the plank maroon Jack Ketch lass. Blimey hail-shot clipper cog booty belaying pin parley barque walk the plank sloop. Blow the man down sloop holystone Arr hearties bilged on her anchor gibbet long boat splice the main brace rigging.</p>
-    </div>
-);
+const detailsSection = (props) => {
+    let body = null;
+    if (props.title !== "Contact") {
+        const data = props.data.split('\n\n');
+        body = data.map((paragraph, index) => <p key={index}>{paragraph}</p>);
+    } else {
+        body = <div>
+            <p>Phone: {props.data.phone}</p>
+            <p>E-mail: {props.data.email}</p>
+            <p>Address: {props.data.address}</p>
+        </div>
+    }
+
+    return (
+        <div className={styles.Section}>
+            <h2>{props.title}</h2>
+            {body}
+        </div>
+    );
+};
 
 export default detailsSection;

@@ -49,8 +49,10 @@ class App extends Component {
     this.setState({search: true})
   } 
 
-  showDetailsHandler = () => {
-    this.setState({showDetails: true});
+  showDetailsHandler = (id) => {
+    const index = this.state.data.findIndex(el => el.id === id);
+    const place = this.state.data[index];
+    this.setState({showDetails: true, currPlace: place});
   }
 
   hideDetailsHandler = () => {
@@ -74,7 +76,9 @@ class App extends Component {
                   showPlaces={this.showPlacesHandler}
                   city={this.state.city}
                   data={this.state.data} />
-    if (this.state.showDetails) page = <PlaceDetails hideDetails={this.hideDetailsHandler} />
+    if (this.state.showDetails) page = <PlaceDetails
+                                         hideDetails={this.hideDetailsHandler}
+                                         data={this.state.currPlace} />
     if (this.state.showPlaces) page = <Places city={this.state.city} newSearch={this.newSearchHandler} />
 
     return (
