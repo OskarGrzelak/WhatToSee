@@ -55,6 +55,18 @@ class App extends Component {
     this.setState({showDetails: true, currPlace: place});
   }
 
+  showPrevHandler = () => {
+    const index = this.state.data.findIndex(el => el.id === this.state.currPlace.id) - 1;
+    const place = this.state.data[index];
+    this.setState({showDetails: true, currPlace: place});
+  }
+
+  showNextHandler = () => {
+    const index = this.state.data.findIndex(el => el.id === this.state.currPlace.id) + 1;
+    const place = this.state.data[index];
+    this.setState({showDetails: true, currPlace: place});
+  }
+
   hideDetailsHandler = () => {
     this.setState({showDetails: false});
   }
@@ -78,7 +90,9 @@ class App extends Component {
                   data={this.state.data} />
     if (this.state.showDetails) page = <PlaceDetails
                                          hideDetails={this.hideDetailsHandler}
-                                         data={this.state.currPlace} />
+                                         data={this.state.currPlace}
+                                         prev = {this.showPrevHandler}
+                                         next = {this.showNextHandler} />
     if (this.state.showPlaces) page = <Places city={this.state.city} newSearch={this.newSearchHandler} />
 
     return (

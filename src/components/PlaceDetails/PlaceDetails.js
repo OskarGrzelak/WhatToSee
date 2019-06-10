@@ -24,8 +24,8 @@ const placeDetails = (props) => {
             <DetailsSection title="Contact" data={props.data} />
             <GallerySection photos={props.data.main_media.media} />
             <div className={styles.Navigation}>
-                <button>Previous</button>
-                <button>Next</button>
+                <button onClick={props.prev}>Previous</button>
+                <button onClick={props.next}>Next</button>
             </div>
             <Footer />
         </div>
