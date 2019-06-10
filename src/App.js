@@ -52,7 +52,7 @@ class App extends Component {
   showDetailsHandler = (id) => {
     const index = this.state.data.findIndex(el => el.id === id);
     const place = this.state.data[index];
-    this.setState({showDetails: true, currPlace: place});
+    this.setState({showDetails: true, currPlace: place, showPlaces: false});
   }
 
   showPrevHandler = () => {
@@ -93,7 +93,11 @@ class App extends Component {
                                          data={this.state.currPlace}
                                          prev = {this.showPrevHandler}
                                          next = {this.showNextHandler} />
-    if (this.state.showPlaces) page = <Places city={this.state.city} newSearch={this.newSearchHandler} />
+    if (this.state.showPlaces) page = <Places 
+                                        city={this.state.city}
+                                        data={this.state.data}
+                                        showDetails={this.showDetailsHandler} 
+                                        newSearch={this.newSearchHandler} />
 
     return (
       <Fragment>

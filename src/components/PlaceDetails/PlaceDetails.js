@@ -1,5 +1,4 @@
 import React from 'react';
-import image from '../../assets/images/TyhoBrahe.jpg';
 import DetailsSection from './DetailsSection/DetailsSection';
 import GallerySection from './GallerySection/GallerySection';
 import Footer from '../Footer/Footer';
@@ -13,7 +12,7 @@ const placeDetails = (props) => {
                 <i className="fas fa-times"></i>
             </div>
             <figure>
-                <img src={props.data.main_media.media[0].url} alt={image} />
+                <img src={props.data.main_media.media[0].url} alt={props.data.main_media.media[0].attribution.title} />
                 <figcaption>
                     <h1>{props.data.name}</h1>
                 </figcaption>

@@ -14,21 +14,18 @@ class Places extends Component {
 
     render() {
 
+        const places = this.props.data.map((place, index) => <Card data={place} showDetails={this.props.showDetails} key={index} />);
+
         return (
             <div className={styles.Places}>
                 <Header type="places" city={this.props.city} />
                 <div className={styles.Grid}>
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
+                    {places}
                 </div>
                 <div className={styles.SearchBox}>
                     <input type="text" id="newSearch" placeholder="Do you want to check other city?" onChange={(e) => this.changeCityHandler(e)} />
                     <label for="newSearch">Do you want to check other city?</label>
-                    <button onClick={() => this.props.newSearch(this.state.newCity)}><i class="fas fa-binoculars"></i></button>
+                    <button onClick={() => this.props.newSearch(this.state.newCity)}><i className="fas fa-binoculars"></i></button>
                 </div>
                 <Footer />
             </div>

@@ -1,15 +1,15 @@
 import React from 'react';
-import image from '../../../assets/images/TyhoBrahe.jpg';
 import styles from './Card.module.css';
 
-const card = () => (
+const card = (props) => (
     <figure className={styles.Card}>
-        <img src={image} alt={image} />
+        <img src={props.data.main_media.media[0].url} alt={props.data.main_media.media[0].attribution.title} />
         <figcaption>
             <p>
-                Tyho Brahe Planetarium
+                {props.data.name}
                 <span>
-                    Transom skysail lugsail lee Blimey me walk the plank maroon Jack Ketch lass. Blimey hail-shot clipper cog booty belaying pin parley barque walk the plank sloop.
+                    {props.data.perex}
+                    <button onClick={() => props.showDetails(props.data.id)}>Read more</button>
                 </span>
             </p>
         </figcaption>
