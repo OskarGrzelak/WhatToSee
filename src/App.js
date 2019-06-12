@@ -15,29 +15,32 @@ class App extends Component {
   }
 
   componentDidUpdate = () => {
+    this.search();
+  }
+
+  search = () => {
     let cityId = null;
     let placesIds = null;
     if(this.state.search) {
-      if(!this.state.data) {
-        axios.get(`https://api.sygictravelapi.com/1.1/en/places/list?limit=1&query=${this.state.city}`, { headers: { 'x-api-key': 'Nx61vXYQ978Fa6NqhRkdg90yxq90VRSu1xO5xlfm' } })
-          .then(response => {
-            cityId = response.data.data.places[0].id;
-            return axios.get(`https://api.sygictravelapi.com/1.1/en/places/list?parents=${cityId}&level=poi&limit=5`, { headers: { 'x-api-key': 'Nx61vXYQ978Fa6NqhRkdg90yxq90VRSu1xO5xlfm' } })
-          })
-          .then(response => {
-            placesIds = response.data.data.places.map(place => place.id).reduce((prev, curr)=>{
-              return prev + '%7C' + curr;
-            });
-            const url = `https://api.sygictravelapi.com/1.1/en/places?ids=${placesIds}`;
-            return axios.get(url, { headers: { 'x-api-key': 'Nx61vXYQ978Fa6NqhRkdg90yxq90VRSu1xO5xlfm' } })
-          })
-          .then(response => {
-            this.setState({ data: response.data.data.places });
-          })
-          .catch(error => {
-          console.log(error)
-          });
-      }
+      console.log('component did update')
+      axios.get(`https://api.sygictravelapi.com/1.1/en/places/list?limit=1&query=${this.state.city}`, { headers: { 'x-api-key': 'Nx61vXYQ978Fa6NqhRkdg90yxq90VRSu1xO5xlfm' } })
+      .then(response => {
+        cityId = response.data.data.places[0].id;
+        return axios.get(`https://api.sygictravelapi.com/1.1/en/places/list?parents=${cityId}&level=poi&limit=5`, { headers: { 'x-api-key': 'Nx61vXYQ978Fa6NqhRkdg90yxq90VRSu1xO5xlfm' } })
+      })
+      .then(response => {
+        placesIds = response.data.data.places.map(place => place.id).reduce((prev, curr)=>{
+          return prev + '%7C' + curr;
+        });
+        const url = `https://api.sygictravelapi.com/1.1/en/places?ids=${placesIds}`;
+        return axios.get(url, { headers: { 'x-api-key': 'Nx61vXYQ978Fa6NqhRkdg90yxq90VRSu1xO5xlfm' } })
+      })
+      .then(response => {
+        this.setState({ data: response.data.data.places, search: false });
+      })
+      .catch(error => {
+      console.log(error)
+      });
     }
   }
 
@@ -76,7 +79,7 @@ class App extends Component {
   }
 
   newSearchHandler = (city) => {
-    this.setState({city: city, showPlaces: false});
+    this.setState({city: city, showPlaces: false, search: true});
   }
 
   render() {
