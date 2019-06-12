@@ -11,11 +11,14 @@ class App extends Component {
     search: false,
     showDetails: false,
     showPlaces: false,
-    data: null
+    data: null,
+    scroll: false,
+    scrollPosition: 0
   }
 
   componentDidUpdate = () => {
     this.search();
+    this.scroll();
   }
 
   search = () => {
@@ -44,30 +47,38 @@ class App extends Component {
     }
   }
 
+  scroll = () => {
+    if(this.state.scroll) {
+      const position = this.state.scrollPosition;
+      window.scrollTo(0, position);
+      this.setState({scroll: false});
+    }
+  }
+
   changeCityHandler = (e) => {
     this.setState({city: e.target.value});
   }
 
   searchHandler = () => {
-    this.setState({search: true})
+    this.setState({search: true, scroll: true, scrollPosition: window.outerHeight})
   } 
 
   showDetailsHandler = (id) => {
     const index = this.state.data.findIndex(el => el.id === id);
     const place = this.state.data[index];
-    this.setState({showDetails: true, currPlace: place, showPlaces: false});
+    this.setState({showDetails: true, currPlace: place, showPlaces: false, scroll: true, scrollPosition: 0});
   }
 
   showPrevHandler = () => {
     const index = this.state.data.findIndex(el => el.id === this.state.currPlace.id) - 1;
     const place = this.state.data[index];
-    this.setState({showDetails: true, currPlace: place});
+    this.setState({showDetails: true, currPlace: place, scroll: true, scrollPosition: 0});
   }
 
   showNextHandler = () => {
     const index = this.state.data.findIndex(el => el.id === this.state.currPlace.id) + 1;
     const place = this.state.data[index];
-    this.setState({showDetails: true, currPlace: place});
+    this.setState({showDetails: true, currPlace: place, scroll: true, scrollPosition: 0});
   }
 
   hideDetailsHandler = () => {
@@ -75,11 +86,11 @@ class App extends Component {
   }
 
   showPlacesHandler = () => {
-    this.setState({showPlaces: true});
+    this.setState({showPlaces: true, scroll: true, scrollPosition: 0});
   }
 
   newSearchHandler = (city) => {
-    this.setState({city: city, showPlaces: false, search: true});
+    this.setState({city: city, showPlaces: false, search: true, scrollPosition: window.outerHeight});
   }
 
   render() {
