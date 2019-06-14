@@ -9,7 +9,7 @@ const card = (props) => (
                 {props.data.name}
                 <span>
                     {props.data.perex}
-                    <button onClick={() => props.showDetails(props.data.id)}>Read more</button>
+                    <button onClick={(e) => props.showDetails(e.target.parentNode.parentNode.parentNode.parentNode, props.data.id)}>Read more</button>
                 </span>
             </p>
         </figcaption>

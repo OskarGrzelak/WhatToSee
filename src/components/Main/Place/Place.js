@@ -10,7 +10,7 @@ const place = (props) => {
             <div className={styles.DataContainer}>
                 <h3>{props.data.name}</h3>
                 <p>{props.data.perex}</p>
-                <button onClick={() => props.showDetails(props.data.id)}>Read More</button>
+                <button onClick={(e) => props.showDetails(e.target, props.data.id)}>Read More</button>
             </div>
         </div>
     );
@@ -20,7 +20,7 @@ const place = (props) => {
                 <div className={styles.DataContainer}>
                     <h3>{props.data.name}</h3>
                     <p>{props.data.perex}</p>
-                    <button onClick={() => props.showDetails(props.data.id)}>Read More</button>
+                    <button onClick={(e) => props.showDetails(e.target, props.data.id)}>Read More</button>
                 </div>
                 <div className={styles.ImageContainer}>
                     <img src={props.data.main_media.media[0].url} alt={props.data.main_media.media[0].attribution.title} />

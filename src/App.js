@@ -13,7 +13,9 @@ class App extends Component {
     showPlaces: false,
     data: null,
     scroll: false,
-    scrollPosition: 0
+    scrollPosition: 0,
+    oldScrollPosition: 0,
+    loading: false
   }
 
   componentDidUpdate = () => {
@@ -39,7 +41,7 @@ class App extends Component {
         return axios.get(url, { headers: { 'x-api-key': 'Nx61vXYQ978Fa6NqhRkdg90yxq90VRSu1xO5xlfm' } })
       })
       .then(response => {
-        this.setState({ data: response.data.data.places, search: false });
+        this.setState({ data: response.data.data.places, search: false, loading: false });
       })
       .catch(error => {
       console.log(error)
@@ -60,13 +62,15 @@ class App extends Component {
   }
 
   searchHandler = () => {
-    this.setState({search: true, scroll: true, scrollPosition: window.outerHeight})
+    this.setState({loading: true, search: true, scroll: true, scrollPosition: window.innerHeight})
   } 
 
-  showDetailsHandler = (id) => {
+  showDetailsHandler = (el, id) => {
+    const rect = el.getBoundingClientRect();
+    const position = el.offsetTop - rect.top;
     const index = this.state.data.findIndex(el => el.id === id);
     const place = this.state.data[index];
-    this.setState({showDetails: true, currPlace: place, showPlaces: false, scroll: true, scrollPosition: 0});
+    this.setState({showDetails: true, currPlace: place, scroll: true, scrollPosition: 0, oldScrollPosition: position});
   }
 
   showPrevHandler = () => {
@@ -82,7 +86,8 @@ class App extends Component {
   }
 
   hideDetailsHandler = () => {
-    this.setState({showDetails: false});
+    const position = this.state.oldScrollPosition;
+    this.setState({showDetails: false, scroll: true, scrollPosition: position});
   }
 
   showPlacesHandler = () => {
@@ -90,7 +95,7 @@ class App extends Component {
   }
 
   newSearchHandler = (city) => {
-    this.setState({city: city, showPlaces: false, search: true, scrollPosition: window.outerHeight});
+    this.setState({loading: true, city: city, showPlaces: false, search: true, scrollPosition: window.outerHeight});
   }
 
   render() {
@@ -98,20 +103,21 @@ class App extends Component {
     let page = <Main 
                   changeCity={this.changeCityHandler}
                   search={this.searchHandler}
+                  loading={this.state.loading}
                   showDetails={this.showDetailsHandler}
                   showPlaces={this.showPlacesHandler}
                   city={this.state.city}
                   data={this.state.data} />
-    if (this.state.showDetails) page = <PlaceDetails
-                                         hideDetails={this.hideDetailsHandler}
-                                         data={this.state.currPlace}
-                                         prev = {this.showPrevHandler}
-                                         next = {this.showNextHandler} />
     if (this.state.showPlaces) page = <Places 
                                         city={this.state.city}
                                         data={this.state.data}
                                         showDetails={this.showDetailsHandler} 
                                         newSearch={this.newSearchHandler} />
+    if (this.state.showDetails) page = <PlaceDetails
+                                         hideDetails={this.hideDetailsHandler}
+                                         data={this.state.currPlace}
+                                         prev = {this.showPrevHandler}
+                                         next = {this.showNextHandler} />
 
     return (
       <Fragment>
