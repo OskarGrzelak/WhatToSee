@@ -17,7 +17,7 @@ const placeDetails = (props) => {
                     <h1>{props.data.name}</h1>
                 </figcaption>
             </figure>
-            <DetailsSection title="About" data={props.data.description.text} />
+            <DetailsSection title="About" data={props.data.description ? props.data.description.text : null} />
             <DetailsSection title="Opening hours" data={props.data.opening_hours} />
             <DetailsSection title="Admission" data={props.data.admission}/>
             <DetailsSection title="Contact" data={props.data} />

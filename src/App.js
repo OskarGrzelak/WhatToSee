@@ -15,7 +15,10 @@ class App extends Component {
     scroll: false,
     scrollPosition: 0,
     oldScrollPosition: 0,
-    loading: false
+    loading: false,
+    error: false,
+    prevBtnDisable: false,
+    nextBtnDisable: false
   }
 
   componentDidUpdate = () => {
@@ -44,7 +47,8 @@ class App extends Component {
         this.setState({ data: response.data.data.places, search: false, loading: false });
       })
       .catch(error => {
-      console.log(error)
+        console.log(error)
+        this.setState({error: true, loading: false, search: false});
       });
     }
   }
@@ -65,6 +69,10 @@ class App extends Component {
     this.setState({loading: true, search: true, scroll: true, scrollPosition: window.innerHeight})
   } 
 
+  closeErrorBoxHandler = () => {
+    this.setState({error: false, scroll: true, scrollPosition: 0})
+  }
+
   showDetailsHandler = (el, id) => {
     const rect = el.getBoundingClientRect();
     const position = el.offsetTop - rect.top;
@@ -74,15 +82,21 @@ class App extends Component {
   }
 
   showPrevHandler = () => {
+    let place = null;
     const index = this.state.data.findIndex(el => el.id === this.state.currPlace.id) - 1;
-    const place = this.state.data[index];
-    this.setState({showDetails: true, currPlace: place, scroll: true, scrollPosition: 0});
+    if (index >= 0) {
+      place = this.state.data[index];
+      this.setState({currPlace: place, scroll: true, scrollPosition: 0});
+    }
   }
 
   showNextHandler = () => {
+    let place = null;
     const index = this.state.data.findIndex(el => el.id === this.state.currPlace.id) + 1;
-    const place = this.state.data[index];
-    this.setState({showDetails: true, currPlace: place, scroll: true, scrollPosition: 0});
+    if (index < this.state.data.length) {
+      place = this.state.data[index];
+      this.setState({currPlace: place, scroll: true, scrollPosition: 0});
+    }
   }
 
   hideDetailsHandler = () => {
@@ -104,6 +118,8 @@ class App extends Component {
                   changeCity={this.changeCityHandler}
                   search={this.searchHandler}
                   loading={this.state.loading}
+                  error={this.state.error}
+                  closeErrorBox={this.closeErrorBoxHandler}
                   showDetails={this.showDetailsHandler}
                   showPlaces={this.showPlacesHandler}
                   city={this.state.city}
