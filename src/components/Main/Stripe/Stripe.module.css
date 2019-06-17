@@ -1,0 +1,19 @@
+.Stripe {
+    position: absolute;
+    height: 100%;
+    width: 6rem;
+    top: 95vh;
+    left: -3rem;
+    display: block;
+    background-color: #37AFFF;
+}
+
+.Absolute {
+    position: absolute;
+    top: 95vh;
+}
+
+.Fixed {
+    position: fixed;
+    top: 210px;
+}

@@ -1,5 +1,7 @@
 import React from 'react';
 import Header from './Header/Header';
+import Cirlce from './Circle/Circle';
+import Stripe from './Stripe/Stripe';
 import Loader from '../Loader/Loader';
 import ErrorBox from '../ErrorBox/ErrorBox';
 import Content from './Content/Content';
@@ -26,6 +28,8 @@ const main = (props) => {
     return (
         <div className={styles.Main}>
             <Header type="main" changeCity={props.changeCity} search={props.search} city={props.city} />
+            <Cirlce pageOffset={props.pageOffset} />
+            <Stripe pageOffset={props.pageOffset} />
             {loader}
             {errorBox}
             {content}

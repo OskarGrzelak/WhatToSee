@@ -18,7 +18,8 @@ class App extends Component {
     loading: false,
     error: false,
     prevBtnDisable: false,
-    nextBtnDisable: false
+    nextBtnDisable: false,
+    pageOffset: 0
   }
 
   componentDidUpdate = () => {
@@ -112,6 +113,16 @@ class App extends Component {
     this.setState({loading: true, city: city, showPlaces: false, search: true, scrollPosition: window.outerHeight});
   }
 
+  eventsHandler = () => {
+    window.addEventListener('scroll', ()=> {
+      const pageOffset = window.pageYOffset;
+      if (pageOffset !== this.state.pageOffset) {
+        console.log(pageOffset);
+        this.setState({pageOffset: pageOffset});
+      }
+    });
+  }
+
   render() {
 
     let page = <Main 
@@ -123,7 +134,8 @@ class App extends Component {
                   showDetails={this.showDetailsHandler}
                   showPlaces={this.showPlacesHandler}
                   city={this.state.city}
-                  data={this.state.data} />
+                  data={this.state.data}
+                  pageOffset={this.state.pageOffset} />
     if (this.state.showPlaces) page = <Places 
                                         city={this.state.city}
                                         data={this.state.data}
@@ -134,6 +146,8 @@ class App extends Component {
                                          data={this.state.currPlace}
                                          prev = {this.showPrevHandler}
                                          next = {this.showNextHandler} />
+
+    this.eventsHandler();
 
     return (
       <Fragment>
