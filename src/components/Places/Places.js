@@ -24,7 +24,7 @@ class Places extends Component {
                 </div>
                 <div className={styles.SearchBox}>
                     <input type="text" id="newSearch" placeholder="Do you want to check other city?" onChange={(e) => this.changeCityHandler(e)} />
-                    <label for="newSearch">Do you want to check other city?</label>
+                    <label htmlFor="newSearch">Do you want to check other city?</label>
                     <button onClick={() => this.props.newSearch(this.state.newCity)}><i className="fas fa-binoculars"></i></button>
                 </div>
                 <Footer />

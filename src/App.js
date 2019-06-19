@@ -31,7 +31,6 @@ class App extends Component {
     let cityId = null;
     let placesIds = null;
     if(this.state.search) {
-      console.log('component did update')
       axios.get(`https://api.sygictravelapi.com/1.1/en/places/list?limit=1&query=${this.state.city}`, { headers: { 'x-api-key': 'Nx61vXYQ978Fa6NqhRkdg90yxq90VRSu1xO5xlfm' } })
       .then(response => {
         cityId = response.data.data.places[0].id;
