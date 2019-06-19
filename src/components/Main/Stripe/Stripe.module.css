@@ -1,19 +1,48 @@
 .Stripe {
     position: absolute;
     height: 100%;
-    width: 6rem;
-    top: 95vh;
-    left: -3rem;
+    width: 2rem;
+    left: 0rem;
     display: block;
     background-color: #37AFFF;
 }
 
+.Stripe::before {
+    content: '';
+    position: absolute;
+    height: 30rem;
+    width: 30rem;
+    top: -15rem;
+    left: -15rem;
+    display: block;
+    background-color: #37AFFF;
+    border-radius: 100%;
+}
+
 .Absolute {
     position: absolute;
-    top: 95vh;
+    top: 100vh;
 }
 
 .Fixed {
     position: fixed;
-    top: 210px;
+    top: 300px;
+}
+
+@media only screen and (max-width: 1000px) {
+    .Stripe {
+        width: 1rem;
+        left: 0;
+    }
+    .Stripe::before {
+        height: 25rem;
+        width: 25rem;
+        left: -12.5rem;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .Stripe {
+        display: none;
+    }
 }

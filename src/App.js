@@ -117,7 +117,6 @@ class App extends Component {
     window.addEventListener('scroll', ()=> {
       const pageOffset = window.pageYOffset;
       if (pageOffset !== this.state.pageOffset) {
-        console.log(pageOffset);
         this.setState({pageOffset: pageOffset});
       }
     });

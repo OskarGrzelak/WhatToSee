@@ -19,6 +19,12 @@
     }
 }
 
+@media only screen and (max-width: 800px) {
+    .Content {
+        grid-column: main-start / main-end;
+    }
+}
+
 @media only screen and (max-width: 500px) {
     .Content {
         padding: 2rem 0;
