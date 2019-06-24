@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styles from './Place.module.css';
 
 const place = (props) => {
@@ -10,7 +11,7 @@ const place = (props) => {
             <div className={styles.DataContainer}>
                 <h3>{props.data.name}</h3>
                 <p>{props.data.perex}</p>
-                <button onClick={(e) => props.showDetails(e.target, props.data.id)}>Read More</button>
+                <button onClick={(e) => props.setNewScrollPosition(0, 'main', e.target)}><Link to={`/places/${props.data.id}`}>Read More</Link></button>
             </div>
         </div>
     );
@@ -20,7 +21,7 @@ const place = (props) => {
                 <div className={styles.DataContainer}>
                     <h3>{props.data.name}</h3>
                     <p>{props.data.perex}</p>
-                    <button onClick={(e) => props.showDetails(e.target, props.data.id)}>Read More</button>
+                    <button onClick={(e) => props.setNewScrollPosition(0, 'main', e.target)}><Link to={`/places/${props.data.id}`}>Read More</Link></button>
                 </div>
                 <div className={styles.ImageContainer}>
                     <img src={props.data.main_media.media[0].url} alt={props.data.main_media.media[0].attribution.title} />

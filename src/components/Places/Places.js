@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Header from '../Main/Header/Header';
 import Footer from '../Footer/Footer';
 import Card from './Card/Card';
@@ -14,7 +15,7 @@ class Places extends Component {
 
     render() {
 
-        const places = this.props.data.map((place, index) => <Card data={place} showDetails={this.props.showDetails} key={index} />);
+        const places = this.props.data.map((place, index) => <Card data={place} setNewScrollPosition={this.props.setNewScrollPosition} key={index} />);
 
         return (
             <div className={styles.Places}>
@@ -25,7 +26,7 @@ class Places extends Component {
                 <div className={styles.SearchBox}>
                     <input type="text" id="newSearch" placeholder="Do you want to check other city?" onChange={(e) => this.changeCityHandler(e)} />
                     <label htmlFor="newSearch">Do you want to check other city?</label>
-                    <button onClick={() => this.props.newSearch(this.state.newCity)}><i className="fas fa-binoculars"></i></button>
+                    <button><Link to="/" onClick={() => this.props.newSearch(this.state.newCity)}><i className="fas fa-binoculars"></i></Link></button>
                 </div>
                 <Footer />
             </div>

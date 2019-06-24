@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styles from './Card.module.css';
 
 const card = (props) => (
@@ -9,7 +10,7 @@ const card = (props) => (
                 {props.data.name}
                 <span>
                     {props.data.perex}
-                    <button onClick={(e) => props.showDetails(e.target.parentNode.parentNode.parentNode.parentNode, props.data.id)}>Read more</button>
+                    <button onClick={(e) => props.setNewScrollPosition(0, 'places', e.target.parentNode.parentNode.parentNode.parentNode.parentNode)}><Link to={`/places/${props.data.id}`}>Read More</Link></button>
                 </span>
             </p>
         </figcaption>

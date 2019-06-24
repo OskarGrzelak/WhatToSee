@@ -1,4 +1,5 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Main from './components/Main/Main';
 import PlaceDetails from './components/PlaceDetails/PlaceDetails';
 import Places from './components/Places/Places';
@@ -19,7 +20,8 @@ class App extends Component {
     error: false,
     prevBtnDisable: false,
     nextBtnDisable: false,
-    pageOffset: 0
+    pageOffset: 0,
+    redirectedFrom: '',
   }
 
   componentDidUpdate = () => {
@@ -44,7 +46,7 @@ class App extends Component {
         return axios.get(url, { headers: { 'x-api-key': 'Nx61vXYQ978Fa6NqhRkdg90yxq90VRSu1xO5xlfm' } })
       })
       .then(response => {
-        this.setState({ data: response.data.data.places, search: false, loading: false });
+        this.setState({ data: response.data.data.places, search: false, loading: false, scroll: true, scrollPosition: window.innerHeight });
       })
       .catch(error => {
         console.log(error)
@@ -55,7 +57,7 @@ class App extends Component {
 
   scroll = () => {
     if(this.state.scroll) {
-      const position = this.state.scrollPosition;
+      let position = this.state.scrollPosition;
       window.scrollTo(0, position);
       this.setState({scroll: false});
     }
@@ -66,50 +68,21 @@ class App extends Component {
   }
 
   searchHandler = () => {
-    this.setState({loading: true, search: true, scroll: true, scrollPosition: window.innerHeight})
+    this.setState({loading: true, search: true})
   } 
 
   closeErrorBoxHandler = () => {
     this.setState({error: false, scroll: true, scrollPosition: 0})
   }
 
-  showDetailsHandler = (el, id) => {
+  setScrollPosition = (el) => {
     const rect = el.getBoundingClientRect();
     const position = el.offsetTop - rect.top;
-    const index = this.state.data.findIndex(el => el.id === id);
-    const place = this.state.data[index];
-    this.setState({showDetails: true, currPlace: place, scroll: true, scrollPosition: 0, oldScrollPosition: position});
-  }
-
-  showPrevHandler = () => {
-    let place = null;
-    const index = this.state.data.findIndex(el => el.id === this.state.currPlace.id) - 1;
-    if (index >= 0) {
-      place = this.state.data[index];
-      this.setState({currPlace: place, scroll: true, scrollPosition: 0});
-    }
-  }
-
-  showNextHandler = () => {
-    let place = null;
-    const index = this.state.data.findIndex(el => el.id === this.state.currPlace.id) + 1;
-    if (index < this.state.data.length) {
-      place = this.state.data[index];
-      this.setState({currPlace: place, scroll: true, scrollPosition: 0});
-    }
-  }
-
-  hideDetailsHandler = () => {
-    const position = this.state.oldScrollPosition;
-    this.setState({showDetails: false, scroll: true, scrollPosition: position});
-  }
-
-  showPlacesHandler = () => {
-    this.setState({showPlaces: true, scroll: true, scrollPosition: 0});
+    this.setState({scrollPosition: 0, oldScrollPosition: position});
   }
 
   newSearchHandler = (city) => {
-    this.setState({loading: true, city: city, showPlaces: false, search: true, scrollPosition: window.outerHeight});
+    this.setState({loading: true, city: city, showPlaces: false, search: true});
   }
 
   eventsHandler = () => {
@@ -121,36 +94,44 @@ class App extends Component {
     });
   }
 
+  saveOldScrollPosition = (el) => {
+    const rect = el.getBoundingClientRect();
+    return el.offsetTop - rect.top
+  }
+
+  setNewScrollPosition = (position, string, el) => {
+    let oldPosition = el ? this.saveOldScrollPosition(el) : this.state.oldScrollPosition;
+    let redirectedFrom = string ? string : this.state.redirectedFrom;
+    this.setState({scrollPosition: position, oldScrollPosition: oldPosition, scroll: true, redirectedFrom: redirectedFrom});
+  }
+
   render() {
 
-    let page = <Main 
+    this.eventsHandler();
+
+    return (
+      <Router>
+        <Route exact path="/" render={() => <Main 
                   changeCity={this.changeCityHandler}
                   search={this.searchHandler}
                   loading={this.state.loading}
                   error={this.state.error}
                   closeErrorBox={this.closeErrorBoxHandler}
-                  showDetails={this.showDetailsHandler}
-                  showPlaces={this.showPlacesHandler}
                   city={this.state.city}
                   data={this.state.data}
-                  pageOffset={this.state.pageOffset} />
-    if (this.state.showPlaces) page = <Places 
-                                        city={this.state.city}
-                                        data={this.state.data}
-                                        showDetails={this.showDetailsHandler} 
-                                        newSearch={this.newSearchHandler} />
-    if (this.state.showDetails) page = <PlaceDetails
-                                         hideDetails={this.hideDetailsHandler}
-                                         data={this.state.currPlace}
-                                         prev = {this.showPrevHandler}
-                                         next = {this.showNextHandler} />
-
-    this.eventsHandler();
-
-    return (
-      <Fragment>
-        {page}
-      </Fragment>
+                  pageOffset={this.state.pageOffset}
+                  setNewScrollPosition={this.setNewScrollPosition} />} />
+        <Route exact path="/places" render={() => <Places city={this.state.city} 
+                                                    data={this.state.data}
+                                                    newSearch={this.newSearchHandler}
+                                                    setNewScrollPosition={this.setNewScrollPosition} /> } />
+        <Route path="/places/:placeId" render={({ match }) => <PlaceDetails
+                                         data={this.state.data}
+                                         redirectedFrom={this.state.redirectedFrom}
+                                         position={this.state.oldScrollPosition}
+                                         setNewScrollPosition={this.setNewScrollPosition}
+                                         match={match} />} />
+      </Router>
     )
   }
 }

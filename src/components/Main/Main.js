@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Header from './Header/Header';
 import Stripe from './Stripe/Stripe';
 import Loader from '../Loader/Loader';
@@ -15,11 +16,11 @@ const main = (props) => {
     let placesList = null;
     if (props.loading) loader = <Loader />;
     if (props.data && !props.loading) {
-        placesList = props.data.map((place, index) => <Place data={place} showDetails={props.showDetails} key={index} id={index} />);
+        placesList = props.data.map((place, index) => <Place data={place} setNewScrollPosition={props.setNewScrollPosition} key={index} id={index} />);
         content = (
             <Content>
                 {placesList}
-                <button onClick={props.showPlaces}>See more places</button>
+                <button><Link to="/places" onClick={() => props.setNewScrollPosition(0)}>See more places</Link></button>
             </Content>
         )
     }
