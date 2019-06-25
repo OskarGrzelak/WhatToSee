@@ -17,7 +17,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
+a,
+button {
   text-decoration: none;
   display: block;
   padding: 2.5rem 0;
