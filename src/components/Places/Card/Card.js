@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Card.module.css';
+import image from '../../../assets/images/no-avalible-image.png';
 
 const card = (props) => (
     <figure className={styles.Card}>
-        <img src={props.data.main_media.media[0].url} alt={props.data.main_media.media[0].attribution.title} />
+        <img img src={props.data.main_media ? props.data.main_media.media[0].url : image} alt={props.data.main_media ? props.data.main_media.media[0].attribution.title : null} />
         <figcaption>
             <p>
                 {props.data.name}

@@ -5,21 +5,20 @@ import PlaceDetails from './components/PlaceDetails/PlaceDetails';
 import Places from './components/Places/Places';
 import axios from 'axios';
 
+axios.defaults.baseURL = 'https://api.sygictravelapi.com/1.1/en';
+axios.defaults.headers.common['x-api-key'] = 'Nx61vXYQ978Fa6NqhRkdg90yxq90VRSu1xO5xlfm';
+
 class App extends Component {
 
   state = {
     city: '',
     search: false,
-    showDetails: false,
-    showPlaces: false,
     data: null,
     scroll: false,
     scrollPosition: 0,
     oldScrollPosition: 0,
     loading: false,
     error: false,
-    prevBtnDisable: false,
-    nextBtnDisable: false,
     pageOffset: 0,
     redirectedFrom: '',
   }
@@ -33,17 +32,16 @@ class App extends Component {
     let cityId = null;
     let placesIds = null;
     if(this.state.search) {
-      axios.get(`https://api.sygictravelapi.com/1.1/en/places/list?limit=1&query=${this.state.city}`, { headers: { 'x-api-key': 'Nx61vXYQ978Fa6NqhRkdg90yxq90VRSu1xO5xlfm' } })
+      axios.get(`/places/list?limit=1&query=${this.state.city}`)
       .then(response => {
         cityId = response.data.data.places[0].id;
-        return axios.get(`https://api.sygictravelapi.com/1.1/en/places/list?parents=${cityId}&level=poi&limit=5`, { headers: { 'x-api-key': 'Nx61vXYQ978Fa6NqhRkdg90yxq90VRSu1xO5xlfm' } })
+        return axios.get(`/places/list?parents=${cityId}&level=poi&limit=5`)
       })
       .then(response => {
         placesIds = response.data.data.places.map(place => place.id).reduce((prev, curr)=>{
           return prev + '%7C' + curr;
         });
-        const url = `https://api.sygictravelapi.com/1.1/en/places?ids=${placesIds}`;
-        return axios.get(url, { headers: { 'x-api-key': 'Nx61vXYQ978Fa6NqhRkdg90yxq90VRSu1xO5xlfm' } })
+        return axios.get(`/places?ids=${placesIds}`)
       })
       .then(response => {
         this.setState({ data: response.data.data.places, search: false, loading: false, scroll: true, scrollPosition: window.innerHeight });
@@ -85,15 +83,6 @@ class App extends Component {
     this.setState({loading: true, city: city, showPlaces: false, search: true});
   }
 
-  eventsHandler = () => {
-    window.addEventListener('scroll', ()=> {
-      const pageOffset = window.pageYOffset;
-      if (pageOffset !== this.state.pageOffset) {
-        this.setState({pageOffset: pageOffset});
-      }
-    });
-  }
-
   saveOldScrollPosition = (el) => {
     const rect = el.getBoundingClientRect();
     return el.offsetTop - rect.top
@@ -105,9 +94,18 @@ class App extends Component {
     this.setState({scrollPosition: position, oldScrollPosition: oldPosition, scroll: true, redirectedFrom: redirectedFrom});
   }
 
+  stripeHandler = () => {
+    window.addEventListener('scroll', ()=> {
+      const pageOffset = window.pageYOffset;
+      if (pageOffset !== this.state.pageOffset) {
+        this.setState({pageOffset: pageOffset});
+      }
+    });
+  }
+
   render() {
 
-    this.eventsHandler();
+    this.stripeHandler();
 
     return (
       <Router>

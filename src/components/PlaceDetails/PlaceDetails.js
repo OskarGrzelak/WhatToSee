@@ -16,7 +16,7 @@ const placeDetails = (props) => {
                 {link}
             </div>
             <figure>
-                <img src={data.main_media.media[0].url} alt={data.main_media.media[0].attribution.title} />
+                <img img src={data.main_media ? data.main_media.media[0].url : null} alt={data.main_media ? data.main_media.media[0].attribution.title : null} />
                 <figcaption>
                     <h1>{data.name}</h1>
                 </figcaption>
@@ -25,7 +25,7 @@ const placeDetails = (props) => {
             <DetailsSection title="Opening hours" data={data.opening_hours} />
             <DetailsSection title="Admission" data={data.admission}/>
             <DetailsSection title="Contact" data={data} />
-            <GallerySection photos={data.main_media.media} />
+            {data.main_media ? <GallerySection photos={data.main_media.media} /> : null}
             <div className={styles.Navigation}>
                 <Link to={`/places/${index-1 >= 0 ? props.data[index-1].id : props.data[props.data.length-1].id}`} onClick={() => props.setNewScrollPosition(0)}>Previous</Link>
                 <Link to={`/places/${index+1 < props.data.length ? props.data[index+1].id : props.data[0].id}`} onClick={() => props.setNewScrollPosition(0)}>Next</Link>
