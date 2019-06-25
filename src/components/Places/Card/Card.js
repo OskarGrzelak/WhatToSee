@@ -10,7 +10,7 @@ const card = (props) => (
                 {props.data.name}
                 <span>
                     {props.data.perex}
-                    <button onClick={(e) => props.setNewScrollPosition(0, 'places', e.target.parentNode.parentNode.parentNode.parentNode.parentNode)}><Link to={`/places/${props.data.id}`}>Read More</Link></button>
+                    <Link to={`/places/${props.data.id}`} onClick={(e) => props.setNewScrollPosition(0, 'places', e.target.parentNode.parentNode.parentNode.parentNode.parentNode)}>Read More</Link>
                 </span>
             </p>
         </figcaption>

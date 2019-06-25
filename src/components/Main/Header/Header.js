@@ -10,7 +10,7 @@ const header = (props) => {
             <MonumentsIcons type="header" />
             <h1>The best places</h1>
             <h2>to see in {props.type === 'main' ? (<input type="text" onChange={(e) => props.changeCity(e)} value={props.city} />) : props.city}</h2>
-            {props.type === 'main' ? (<button onClick={props.search}>Check it!</button>) : null }
+            {props.type === 'main' ? (<a onClick={props.search}>Check it!</a>) : null }
         </div>
     )
 }

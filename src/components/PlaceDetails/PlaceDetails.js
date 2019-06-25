@@ -27,8 +27,8 @@ const placeDetails = (props) => {
             <DetailsSection title="Contact" data={data} />
             <GallerySection photos={data.main_media.media} />
             <div className={styles.Navigation}>
-                <button onClick={() => props.setNewScrollPosition(0)}><Link to={`/places/${index-1 >= 0 ? props.data[index-1].id : props.data[props.data.length-1].id}`}>Previous</Link></button>
-                <button onClick={() => props.setNewScrollPosition(0)}><Link to={`/places/${index+1 < props.data.length ? props.data[index+1].id : props.data[0].id}`}>Next</Link></button>
+                <Link to={`/places/${index-1 >= 0 ? props.data[index-1].id : props.data[props.data.length-1].id}`} onClick={() => props.setNewScrollPosition(0)}>Previous</Link>
+                <Link to={`/places/${index+1 < props.data.length ? props.data[index+1].id : props.data[0].id}`} onClick={() => props.setNewScrollPosition(0)}>Next</Link>
             </div>
             <Footer />
         </div>

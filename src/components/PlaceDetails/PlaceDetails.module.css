@@ -15,6 +15,12 @@
     align-items: center;
 }
 
+.Close a {
+    background-color: transparent;
+    padding: 0;
+    border: none;
+}
+
 .Close i {
     color: #FFFFFF;
     font-size: 3rem;
@@ -59,7 +65,7 @@
     margin-bottom: 10rem;
 }
 
-.Navigation button {
+.Navigation a {
     width: 30rem;
     padding: 2rem 0;
     font-size: 3rem;
@@ -102,7 +108,7 @@
         margin-bottom: 5rem;
     }
 
-    .Navigation button {
+    .Navigation a {
         width: 20rem;
         padding: 1.5rem 0;
         font-size: 2rem;
@@ -118,7 +124,7 @@
         flex-direction: column;
     }
 
-    .Navigation button:not(:last-of-type) {
+    .Navigation a:not(:last-of-type) {
         margin-bottom: 2rem;
     }
 }

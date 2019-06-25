@@ -17,13 +17,18 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-button {
+a {
+  text-decoration: none;
   display: block;
+  padding: 2.5rem 0;
+  font-size: 4rem;
   margin: 0 auto;
   border: 2px solid #37AFFF;
   background-color: #ffffff;
   color: #37AFFF;
   text-transform: uppercase;
+  text-align: center;
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 1200px) {
@@ -35,5 +40,19 @@ button {
 @media only screen and (max-width: 1000px) {
   html {
     font-size: 50%;
+  }
+
+  a {
+    width: 30rem;
+    padding: 2rem 0;
+    font-size: 3rem;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  a {
+    width: 20rem;
+    padding: 1.5rem 0;
+    font-size: 2rem;
   }
 }

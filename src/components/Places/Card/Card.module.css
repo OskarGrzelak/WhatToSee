@@ -41,16 +41,18 @@
     transition: opacity .3s;
 }
 
-.Card span button {
-    border: none;
-    border-bottom: 1px solid transparent;
+.Card span a {
+    border: 1px solid transparent;
     background-color: transparent;
+    width: 15rem;
+    padding: 2px 0;
+    font-size: 2rem;
     color: #ffffff;
     margin-top: 2rem;
     transition: all .2s;
 }
 
-.Card span button:hover {
+.Card span a:hover {
     border-bottom: 1px solid #ffffff;
 }
 

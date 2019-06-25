@@ -33,7 +33,7 @@ img {
     margin-bottom: 2rem;
 }
 
-.Place button {
+.Place a {
     width: 20rem;
     padding: 1.5rem 0;
     font-size: 2rem;
@@ -45,7 +45,7 @@ img {
         margin-bottom: 1.5rem;
     }
     
-    .Place button {
+    .Place a {
         width: 15rem;
         padding: 1rem 0;
         font-size: 1.6rem;

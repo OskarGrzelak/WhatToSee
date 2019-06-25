@@ -20,7 +20,7 @@ const main = (props) => {
         content = (
             <Content>
                 {placesList}
-                <button><Link to="/places" onClick={() => props.setNewScrollPosition(0)}>See more places</Link></button>
+                <Link to="/places" onClick={() => props.setNewScrollPosition(0)}>See more places</Link>
             </Content>
         )
     }
