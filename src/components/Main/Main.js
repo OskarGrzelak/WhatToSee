@@ -16,7 +16,7 @@ const main = (props) => {
     let placesList = null;
     if (props.loading) loader = <Loader />;
     if (props.data && !props.loading) {
-        placesList = props.data.map((place, index) => <Place data={place} setNewScrollPosition={props.setNewScrollPosition} key={index} id={index} />);
+        placesList = props.data.slice(0, 5).map((place, index) => <Place data={place} setNewScrollPosition={props.setNewScrollPosition} key={index} id={index} />);
         content = (
             <Content>
                 {placesList}
