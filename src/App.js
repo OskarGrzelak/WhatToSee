@@ -35,7 +35,7 @@ class App extends Component {
       axios.get(`/places/list?limit=1&query=${this.state.city}`)
       .then(response => {
         cityId = response.data.data.places[0].id;
-        return axios.get(`/places/list?parents=${cityId}&level=poi&limit=30`)
+        return axios.get(`/places/list?parents=${cityId}&level=poi&limit=15`)
       })
       .then(response => {
         placesIds = response.data.data.places.map(place => place.id).reduce((prev, curr)=>{
@@ -108,7 +108,7 @@ class App extends Component {
     this.stripeHandler();
 
     return (
-      <Router>
+      <Router basename="/WhatToSee">
         <Route exact path="/" render={() => <Main 
                   changeCity={this.changeCityHandler}
                   search={this.searchHandler}

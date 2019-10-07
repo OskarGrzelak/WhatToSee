@@ -4,7 +4,6 @@ import styles from './Place.module.css';
 import image from '../../../assets/images/no-avalible-image.png';
 
 const place = (props) => {
-    console.log(props)
     let placeCard = (
         <div className={styles.Place}>
             <div className={styles.ImageContainer}>
